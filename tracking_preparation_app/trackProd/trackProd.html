@@ -1,0 +1,36 @@
+<ion-view title="Preparation Tracking">
+    <ion-nav-buttons side="secondary">
+        <button class="button" ng-click="logout()">Déconnexion</button>
+    </ion-nav-buttons>
+    <ion-content class="has-header">
+        <div class="centered-form">
+
+            <div class="list">
+                <div class="item">
+                    <h1>Utilisateur actif: {{user.name}}</h1>
+                </div>
+                <div class="item" ng-repeat="user in users">
+                    <form ng-submit="select(user)">
+                        <div ng-show="user">
+                            <div class="card">
+                                <h2>{{ user.name }}</h2>
+                                <button class="button" type="submit">Selectionner</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="item">
+                        <label>Bon de livraison <input type="text" ng-model="pick"/></label>
+                        <button class="button" ng-click="write(pick)">Confirmer</button>
+                </div>
+                <div class="item">
+                    <p ng-repeat="log in logs | limitTo: 30 track by $index">
+                    {{ log }}
+                    </p>
+                    <p ng-show="logs.length"><button ng-click="clearLogs()" class="button button-small" title="Vider">X</button></p>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
